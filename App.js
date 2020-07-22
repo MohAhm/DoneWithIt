@@ -6,6 +6,7 @@ import ViewImageScreen from './app/screens/ViewImageScreen'
 import MessagesScreen from './app/screens/MessagesScreen'
 import ListingDetailsScreen from './app/screens/ListingDetailsScreen'
 import AccountScreen from './app/screens/AccountScreen'
+import ListingsScreen from './app/screens/ListingsScreen'
 
 export default function App() {
 	return (
@@ -13,7 +14,8 @@ export default function App() {
 		// <ViewImageScreen />
 		// <ListingDetailsScreen />
 		// <MessagesScreen />
-		<AccountScreen />
+		// <AccountScreen />
+		<ListingsScreen />
 	)
 }
 
