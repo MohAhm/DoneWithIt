@@ -6,6 +6,7 @@ import Screen from './app/components/Screen'
 
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
+import ImageInput from './app/components/ImageInput'
 
 
 export default function App() {
@@ -36,8 +37,10 @@ export default function App() {
 
 	return (
 		<Screen>
-			<Button title='Select Image' onPress={selectImage}/>
-			<Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }}/>
+			<ImageInput
+				imageUri={imageUri}
+				onChangeImage={uri => setImageUri(uri)}
+			/>
 		</Screen>
 	)
 }
