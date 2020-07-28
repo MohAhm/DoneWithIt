@@ -4,42 +4,26 @@ import MessagesScreen from './app/screens/MessagesScreen'
 import ListingEditScreen from './app/screens/ListingEditScreen'
 import Screen from './app/components/Screen'
 
-import * as ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
-import ImageInput from './app/components/ImageInput'
+import ImageInputList from './app/components/ImageInputList'
 
 
 export default function App() {
-	const [imageUri, setImageUri] = useState()
+	const [imageUris, setImageUris] = useState([])
 
-	const requestPermission = async () => {
-		// const { granted } = await Permissions.askAsync(Permissions.CAMERA_ROLL, Permissions.LOCATION)
-		const { granted } = await ImagePicker.requestCameraRollPermissionsAsync()
-
-		if (!granted)
-			alert('You need to enable permission to access the library.')
+	const handleAdd = uri => {
+		setImageUris([...imageUris, uri])
 	}
 
-	useEffect(() => {
-		requestPermission()
-	}, [])
-
-	const selectImage = async () => {
-		try {
-			const result = await ImagePicker.launchImageLibraryAsync()
-
-			if (!result.cancelled)
-				setImageUri(result.uri)
-		} catch (error) {
-			console.log('Error reading an image', error)
-		}
+	const handleRemove = uri => {
+		setImageUris(imageUris.filter(imageUri => imageUri !== uri))
 	}
 
 	return (
 		<Screen>
-			<ImageInput
-				imageUri={imageUri}
-				onChangeImage={uri => setImageUri(uri)}
+			<ImageInputList
+				imageUris={imageUris}
+				onAddImage={handleAdd}
+				onRemoveImage={handleRemove}
 			/>
 		</Screen>
 	)
